@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://webtools-labs.com/yubin-kitte-keisan/sitemap.xml
