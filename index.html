@@ -204,7 +204,7 @@ tr.best { background: var(--best-bg); }
 tr.na td { color: var(--muted); }
 
 .ref-table { overflow-x: auto; }
-.ref-table table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 460px; }
+.ref-table table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 0; }
 .ref-table th, .ref-table td { padding: 0.5rem 0.5rem; border-bottom: 1px solid var(--line); text-align: left; }
 .ref-table td.num { font-variant-numeric: tabular-nums; text-align: right; }
 
@@ -285,6 +285,15 @@ footer.site-footer a { color: var(--accent); }
 .breadcrumb { font-size: 0.78rem; color: var(--muted); margin-bottom: 1.1rem; }
 .breadcrumb a { color: var(--accent); text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
+/* スマホで表が画面からはみ出さないように（2026-11-17） */
+@media (max-width: 600px) {
+  .ref-table table { font-size: 0.8rem; }
+  .ref-table th, .ref-table td { padding: 0.45rem 0.3rem; }
+  .ref-table th, .ref-table td:first-child { white-space: normal; }
+  .ref-table td.nw { white-space: nowrap; }
+  .ref-table th:first-child, .ref-table td:first-child { min-width: 5em; position: sticky; left: 0; z-index: 1; background: var(--bg); box-shadow: 1px 0 0 var(--line); }
+  .ref-table tr.best td:first-child, .ref-table tr.total td:first-child, .ref-table tr.next td:first-child, .ref-table tr.highlight td:first-child { background: var(--best-bg, var(--bg)); }
+}
 </style>
 </head>
 <body>
@@ -307,10 +316,10 @@ footer.site-footer a { color: var(--accent); }
       <table>
         <thead><tr><th>送るもの</th><th class="num">切手代</th></tr></thead>
         <tbody>
-          <tr><td>手紙・長形3号などの封筒（定形郵便物・50g以内）</td><td class="num">110円</td></tr>
-          <tr><td>はがき（通常はがき）</td><td class="num">85円</td></tr>
-          <tr><td>A4の書類を折らずに送る角形2号の封筒（定形外・規格内・50g以内）</td><td class="num">140円</td></tr>
-          <tr><td>同じく100g以内</td><td class="num">180円</td></tr>
+          <tr><td>手紙・長形3号などの封筒（定形郵便物・50g以内）</td><td class="num nw">110円</td></tr>
+          <tr><td>はがき（通常はがき）</td><td class="num nw">85円</td></tr>
+          <tr><td>A4の書類を折らずに送る角形2号の封筒（定形外・規格内・50g以内）</td><td class="num nw">140円</td></tr>
+          <tr><td>同じく100g以内</td><td class="num nw">180円</td></tr>
         </tbody>
       </table>
     </div>
@@ -324,13 +333,13 @@ footer.site-footer a { color: var(--accent); }
       <table style="min-width:0">
         <thead><tr><th>封筒（用途）</th><th>区分</th><th class="num">50g以内</th><th class="num">100g以内</th></tr></thead>
         <tbody>
-          <tr><td>長形3号<br><small>12×23.5cm・A4を三つ折り</small></td><td>定形</td><td class="num">110円</td><td class="num">180円※</td></tr>
-          <tr><td>長形4号<br><small>9×20.5cm・B5を四つ折り</small></td><td>定形</td><td class="num">110円</td><td class="num">180円※</td></tr>
-          <tr><td>洋形2号<br><small>11.4×16.2cm・カード・招待状</small></td><td>定形</td><td class="num">110円</td><td class="num">180円※</td></tr>
-          <tr><td>角形2号<br><small>24×33.2cm・A4を折らずに</small></td><td>定形外<br>（規格内）</td><td class="num">140円</td><td class="num">180円</td></tr>
-          <tr><td>角形A4号<br><small>22.8×31.2cm・A4を折らずに</small></td><td>定形外<br>（規格内）</td><td class="num">140円</td><td class="num">180円</td></tr>
-          <tr><td>角形3号<br><small>21.6×27.7cm・B5を折らずに</small></td><td>定形外<br>（規格内）</td><td class="num">140円</td><td class="num">180円</td></tr>
-          <tr><td>角形1号<br><small>27×38.2cm・B4を折らずに</small></td><td>定形外<br>（規格外）</td><td class="num">260円</td><td class="num">290円</td></tr>
+          <tr><td>長形3号<br><small>12×23.5cm・A4を三つ折り</small></td><td>定形</td><td class="num nw">110円</td><td class="num">180円※</td></tr>
+          <tr><td>長形4号<br><small>9×20.5cm・B5を四つ折り</small></td><td>定形</td><td class="num nw">110円</td><td class="num">180円※</td></tr>
+          <tr><td>洋形2号<br><small>11.4×16.2cm・カード・招待状</small></td><td>定形</td><td class="num nw">110円</td><td class="num">180円※</td></tr>
+          <tr><td>角形2号<br><small>24×33.2cm・A4を折らずに</small></td><td>定形外<br>（規格内）</td><td class="num nw">140円</td><td class="num nw">180円</td></tr>
+          <tr><td>角形A4号<br><small>22.8×31.2cm・A4を折らずに</small></td><td>定形外<br>（規格内）</td><td class="num nw">140円</td><td class="num nw">180円</td></tr>
+          <tr><td>角形3号<br><small>21.6×27.7cm・B5を折らずに</small></td><td>定形外<br>（規格内）</td><td class="num nw">140円</td><td class="num nw">180円</td></tr>
+          <tr><td>角形1号<br><small>27×38.2cm・B4を折らずに</small></td><td>定形外<br>（規格外）</td><td class="num nw">260円</td><td class="num nw">290円</td></tr>
         </tbody>
       </table>
     </div>
@@ -341,10 +350,10 @@ footer.site-footer a { color: var(--accent); }
       <table style="min-width:0">
         <thead><tr><th>送り方</th><th>A4用紙の枚数の目安</th><th class="num">切手代</th></tr></thead>
         <tbody>
-          <tr><td>長形3号に三つ折りで入れる</td><td>約10枚まで（50g以内）</td><td class="num">110円</td></tr>
-          <tr><td>角形2号に折らずに入れる</td><td>約8枚まで（50g以内）</td><td class="num">140円</td></tr>
-          <tr><td>角形2号に折らずに入れる</td><td>約20枚まで（100g以内）</td><td class="num">180円</td></tr>
-          <tr><td>角形2号に折らずに入れる</td><td>約30枚まで（150g以内）</td><td class="num">270円</td></tr>
+          <tr><td>長形3号に三つ折りで入れる</td><td>約10枚まで（50g以内）</td><td class="num nw">110円</td></tr>
+          <tr><td>角形2号に折らずに入れる</td><td>約8枚まで（50g以内）</td><td class="num nw">140円</td></tr>
+          <tr><td>角形2号に折らずに入れる</td><td>約20枚まで（100g以内）</td><td class="num nw">180円</td></tr>
+          <tr><td>角形2号に折らずに入れる</td><td>約30枚まで（150g以内）</td><td class="num nw">270円</td></tr>
         </tbody>
       </table>
     </div>
@@ -417,12 +426,12 @@ footer.site-footer a { color: var(--accent); }
       <table>
         <thead><tr><th>重さ</th><th class="num">料金</th></tr></thead>
         <tbody>
-          <tr><td>50g以内</td><td class="num">140円</td></tr>
-          <tr><td>100g以内</td><td class="num">180円</td></tr>
-          <tr><td>150g以内</td><td class="num">270円</td></tr>
-          <tr><td>250g以内</td><td class="num">320円</td></tr>
-          <tr><td>500g以内</td><td class="num">510円</td></tr>
-          <tr><td>1kg以内</td><td class="num">750円</td></tr>
+          <tr><td>50g以内</td><td class="num nw">140円</td></tr>
+          <tr><td>100g以内</td><td class="num nw">180円</td></tr>
+          <tr><td>150g以内</td><td class="num nw">270円</td></tr>
+          <tr><td>250g以内</td><td class="num nw">320円</td></tr>
+          <tr><td>500g以内</td><td class="num nw">510円</td></tr>
+          <tr><td>1kg以内</td><td class="num nw">750円</td></tr>
         </tbody>
       </table>
     </div>
@@ -434,14 +443,14 @@ footer.site-footer a { color: var(--accent); }
       <table>
         <thead><tr><th>重さ</th><th class="num">料金</th></tr></thead>
         <tbody>
-          <tr><td>50g以内</td><td class="num">260円</td></tr>
-          <tr><td>100g以内</td><td class="num">290円</td></tr>
-          <tr><td>150g以内</td><td class="num">390円</td></tr>
-          <tr><td>250g以内</td><td class="num">450円</td></tr>
-          <tr><td>500g以内</td><td class="num">660円</td></tr>
-          <tr><td>1kg以内</td><td class="num">920円</td></tr>
-          <tr><td>2kg以内</td><td class="num">1,350円</td></tr>
-          <tr><td>4kg以内</td><td class="num">1,750円</td></tr>
+          <tr><td>50g以内</td><td class="num nw">260円</td></tr>
+          <tr><td>100g以内</td><td class="num nw">290円</td></tr>
+          <tr><td>150g以内</td><td class="num nw">390円</td></tr>
+          <tr><td>250g以内</td><td class="num nw">450円</td></tr>
+          <tr><td>500g以内</td><td class="num nw">660円</td></tr>
+          <tr><td>1kg以内</td><td class="num nw">920円</td></tr>
+          <tr><td>2kg以内</td><td class="num nw">1,350円</td></tr>
+          <tr><td>4kg以内</td><td class="num nw">1,750円</td></tr>
         </tbody>
       </table>
     </div>
@@ -455,11 +464,11 @@ footer.site-footer a { color: var(--accent); }
       <table>
         <thead><tr><th>種類</th><th class="num">料金</th></tr></thead>
         <tbody>
-          <tr class="best"><td>定形郵便物（50gまで一律）</td><td class="num">110円</td></tr>
-          <tr><td>定形外郵便物（規格内）</td><td class="num">140円</td></tr>
-          <tr><td>定形外郵便物（規格外）</td><td class="num">260円</td></tr>
-          <tr><td>レターパックライト</td><td class="num">430円</td></tr>
-          <tr><td>レターパックプラス</td><td class="num">600円</td></tr>
+          <tr class="best"><td>定形郵便物（50gまで一律）</td><td class="num nw">110円</td></tr>
+          <tr><td>定形外郵便物（規格内）</td><td class="num nw">140円</td></tr>
+          <tr><td>定形外郵便物（規格外）</td><td class="num nw">260円</td></tr>
+          <tr><td>レターパックライト</td><td class="num nw">430円</td></tr>
+          <tr><td>レターパックプラス</td><td class="num nw">600円</td></tr>
         </tbody>
       </table>
     </div>
@@ -473,10 +482,10 @@ footer.site-footer a { color: var(--accent); }
       <table>
         <thead><tr><th>サービス</th><th class="num">料金</th><th>主な条件</th></tr></thead>
         <tbody>
-          <tr><td>クリックポスト</td><td class="num">240円</td><td>Webで料金を支払い、ラベルを印刷して送る。重さ2kgまで</td></tr>
-          <tr><td>ゆうパケット</td><td class="num">360円</td><td>厚さ3cmまで・1kgまで（2026年10月から厚さに関係なく一律料金）</td></tr>
-          <tr><td>レターパックライト</td><td class="num">430円</td><td>A4サイズ・厚さ3cm以内・4kgまで。郵便受けに届く</td></tr>
-          <tr><td>レターパックプラス</td><td class="num">600円</td><td>A4サイズ・厚さ制限なし・4kgまで。対面で受け取り</td></tr>
+          <tr><td>クリックポスト</td><td class="num nw">240円</td><td>Webで料金を支払い、ラベルを印刷して送る。重さ2kgまで</td></tr>
+          <tr><td>ゆうパケット</td><td class="num nw">360円</td><td>厚さ3cmまで・1kgまで（2026年10月から厚さに関係なく一律料金）</td></tr>
+          <tr><td>レターパックライト</td><td class="num nw">430円</td><td>A4サイズ・厚さ3cm以内・4kgまで。郵便受けに届く</td></tr>
+          <tr><td>レターパックプラス</td><td class="num nw">600円</td><td>A4サイズ・厚さ制限なし・4kgまで。対面で受け取り</td></tr>
         </tbody>
       </table>
     </div>
@@ -490,12 +499,12 @@ footer.site-footer a { color: var(--accent); }
       <table>
         <thead><tr><th>オプション</th><th class="num">加算料金</th><th>50gまでの手紙（110円）に付けた場合</th><th>こんなときに</th></tr></thead>
         <tbody>
-          <tr><td>速達（250gまで）</td><td class="num">+300円</td><td class="num">410円</td><td>急ぎの書類。ポスト投函もできる</td></tr>
+          <tr><td>速達（250gまで）</td><td class="num nw">+300円</td><td class="num nw">410円</td><td>急ぎの書類。ポスト投函もできる</td></tr>
           <tr><td>速達（1kgまで／4kgまで）</td><td class="num">+400円／+690円</td><td>—</td><td>重い郵便物を急ぎで送る</td></tr>
-          <tr><td>特定記録</td><td class="num">+210円</td><td class="num">320円</td><td>差し出した記録を残したい（受け取りはポストへ配達）</td></tr>
-          <tr><td>簡易書留</td><td class="num">+350円</td><td class="num">460円</td><td>手渡しで届けたい。損害は5万円まで補償</td></tr>
-          <tr><td>一般書留</td><td class="num">+480円</td><td class="num">590円</td><td>現金以外の高価なもの。損害は10万円まで補償（5万円ごとに+23円で増額可）</td></tr>
-          <tr><td>配達証明（書留に追加）</td><td class="num">+350円</td><td>—</td><td>届いたことを証明したい（契約の解除通知など）</td></tr>
+          <tr><td>特定記録</td><td class="num nw">+210円</td><td class="num nw">320円</td><td>差し出した記録を残したい（受け取りはポストへ配達）</td></tr>
+          <tr><td>簡易書留</td><td class="num nw">+350円</td><td class="num nw">460円</td><td>手渡しで届けたい。損害は5万円まで補償</td></tr>
+          <tr><td>一般書留</td><td class="num nw">+480円</td><td class="num nw">590円</td><td>現金以外の高価なもの。損害は10万円まで補償（5万円ごとに+23円で増額可）</td></tr>
+          <tr><td>配達証明（書留に追加）</td><td class="num nw">+350円</td><td>—</td><td>届いたことを証明したい（契約の解除通知など）</td></tr>
         </tbody>
       </table>
     </div>
